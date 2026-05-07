@@ -6,6 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="A Miami atelier of bespoke cakes, cupcakes, cake pops, cookies, brownies, flan and tres leches — handmade with the finest ingredients for weddings, birthdays, and the occasions that ask for something extraordinary." />
 <meta name="theme-color" content="#241a16" />
+<!-- Suppress Chrome / Edge auto-translate banner — we provide our own EN/ES toggle. -->
+<meta name="google" content="notranslate" />
+<meta http-equiv="Content-Language" content="en" />
 
 <!-- Open Graph -->
 <meta property="og:title" content="XO Sweets Miami — Couture Patisserie" />
@@ -64,7 +67,7 @@
   nav .links a:hover{color:var(--gold)}
   nav .crest{display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--ink)}
   nav .crest .est{font-family:var(--italic);font-style:italic;font-size:13px;color:var(--gold);letter-spacing:.06em}
-  nav .crest .name{font-family:var(--display);font-size:30px;letter-spacing:.32em;padding-left:.32em}
+  nav .crest .name{font-family:var(--display);font-size:30px;letter-spacing:.32em;padding-left:.32em;color:var(--ink);font-weight:500}
   nav .crest .sub{font-family:var(--italic);font-style:italic;font-size:12px;color:var(--cocoa);letter-spacing:.18em}
   nav .right{display:flex;justify-content:flex-end;gap:24px;align-items:center}
   nav .menu-toggle{display:none;background:none;border:0;color:var(--ink);cursor:pointer;padding:8px;font-family:var(--sans);font-size:11px;letter-spacing:.28em;text-transform:uppercase}
@@ -234,9 +237,9 @@
   footer{background:var(--paper);padding:96px var(--pad) 36px;border-top:1px solid var(--rule)}
   footer .ornament{margin-bottom:48px}
   footer .ornament .glyph{color:var(--gold);font-size:28px}
-  footer .crest{text-align:center;margin-bottom:64px}
+  footer .crest{text-align:center;margin-bottom:64px;color:var(--ink)}
   footer .crest .est{font-family:var(--italic);font-style:italic;font-size:14px;color:var(--gold);letter-spacing:.08em}
-  footer .crest .name{font-family:var(--display);font-size:48px;letter-spacing:.32em;padding-left:.32em;margin:6px 0}
+  footer .crest .name{font-family:var(--display);font-size:48px;letter-spacing:.32em;padding-left:.32em;margin:6px 0;color:var(--ink);font-weight:500}
   footer .crest .sub{font-family:var(--italic);font-style:italic;font-size:14px;color:var(--cocoa);letter-spacing:.16em}
   footer .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;text-align:center;padding-top:48px;border-top:1px solid var(--rule)}
   footer .col .small{display:block;margin-bottom:14px}
@@ -318,11 +321,11 @@
   </div>
   <div class="crest">
     <div class="est" data-i18n="crest.est">— Maison —</div>
-    <div class="name">XO&nbsp;SWEETS</div>
+    <div class="name" translate="no">XO&nbsp;SWEETS</div>
     <div class="sub" data-i18n="crest.sub">Miami · Couture Patisserie</div>
   </div>
   <div class="right">
-    <div class="lang" role="group" aria-label="Language">
+    <div class="lang" role="group" aria-label="Language" translate="no">
       <button type="button" data-lang="en" class="active" aria-pressed="true">EN</button>
       <button type="button" data-lang="es" aria-pressed="false">ES</button>
     </div>
@@ -522,7 +525,7 @@
   <div class="ornament"><span class="glyph">✦ &nbsp; xo &nbsp; ✦</span></div>
   <div class="crest">
     <div class="est" data-i18n="crest.est">— Maison —</div>
-    <div class="name">XO&nbsp;SWEETS</div>
+    <div class="name" translate="no">XO&nbsp;SWEETS</div>
     <div class="sub" data-i18n="footer.crestSub">Miami · Couture Patisserie · Est. 2018</div>
   </div>
   <div class="grid">
@@ -789,6 +792,10 @@
     if (!I18N[lang]) lang = 'en';
     var dict = I18N[lang];
     document.documentElement.lang = lang;
+    // Keep Content-Language meta in sync — some browsers consult this when
+    // deciding whether to offer the auto-translate banner.
+    var clMeta = document.querySelector('meta[http-equiv="Content-Language"]');
+    if (clMeta) clMeta.setAttribute('content', lang);
     document.querySelectorAll('[data-i18n]').forEach(function(el){
       var k = el.getAttribute('data-i18n');
       if (dict[k] != null) el.textContent = dict[k];
