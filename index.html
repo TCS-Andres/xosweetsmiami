@@ -68,6 +68,11 @@
   nav .crest .sub{font-family:var(--italic);font-style:italic;font-size:12px;color:var(--cocoa);letter-spacing:.18em}
   nav .right{display:flex;justify-content:flex-end;gap:24px;align-items:center}
   nav .menu-toggle{display:none;background:none;border:0;color:var(--ink);cursor:pointer;padding:8px;font-family:var(--sans);font-size:11px;letter-spacing:.28em;text-transform:uppercase}
+  /* language toggle */
+  .lang{display:inline-flex;align-items:center;gap:0;border:1px solid var(--rule);border-radius:999px;padding:4px;background:var(--paper)}
+  .lang button{background:transparent;border:0;cursor:pointer;padding:6px 12px;font-family:var(--sans);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft);border-radius:999px;transition:all .18s}
+  .lang button:hover{color:var(--ink)}
+  .lang button.active{background:var(--ink);color:var(--paper)}
 
   /* ─── HERO ─── */
   .hero{
@@ -269,8 +274,10 @@
     nav .menu-toggle{display:inline-flex;align-items:center;gap:8px;justify-self:start}
     nav .crest .name{font-size:20px;letter-spacing:.24em}
     nav .crest .est, nav .crest .sub{display:none}
-    nav .right .small{display:none}
-    nav .right{gap:12px}
+    nav .right .phone-link{display:none}
+    nav .right{gap:8px}
+    .lang button{padding:5px 8px;font-size:9px;letter-spacing:.18em}
+    nav .right .btn-ghost{padding:10px 14px !important;font-size:9px !important}
     .hero{padding:32px var(--pad) 64px}
     .hero-words .lede{font-size:18px}
     .hero-words .marks{gap:16px}
@@ -302,21 +309,25 @@
 <body>
 
 <nav>
-  <button class="menu-toggle" aria-label="Toggle menu" id="menuToggle">☰ Menu</button>
+  <button class="menu-toggle" aria-label="Toggle menu" id="menuToggle" data-i18n="nav.menu">☰ Menu</button>
   <div class="links" id="navLinks">
-    <a href="#signatures">Atelier</a>
-    <a href="#menu">La Carte</a>
-    <a href="#ig">Le Journal</a>
-    <a href="#inquire">Réservez</a>
+    <a href="#signatures" data-i18n="nav.atelier">Atelier</a>
+    <a href="#menu" data-i18n="nav.carte">La Carte</a>
+    <a href="#ig" data-i18n="nav.journal">Le Journal</a>
+    <a href="#inquire" data-i18n="nav.reserve">Réservez</a>
   </div>
   <div class="crest">
-    <div class="est">— Maison —</div>
+    <div class="est" data-i18n="crest.est">— Maison —</div>
     <div class="name">XO&nbsp;SWEETS</div>
-    <div class="sub">Miami · Couture Patisserie</div>
+    <div class="sub" data-i18n="crest.sub">Miami · Couture Patisserie</div>
   </div>
   <div class="right">
-    <a class="small" href="tel:7863547439">786 354 7439</a>
-    <a class="btn btn-ghost" href="#inquire" style="padding:12px 22px;font-size:10px">Inquire</a>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="active" aria-pressed="true">EN</button>
+      <button type="button" data-lang="es" aria-pressed="false">ES</button>
+    </div>
+    <a class="small phone-link" href="tel:7863547439">786 354 7439</a>
+    <a class="btn btn-ghost" href="#inquire" style="padding:12px 22px;font-size:10px" data-i18n="nav.inquire">Inquire</a>
   </div>
 </nav>
 
@@ -325,22 +336,22 @@
   <div class="ornament"><span class="glyph">✦ &nbsp; xo &nbsp; ✦</span></div>
   <div class="hero-grid">
     <div class="hero-words">
-      <span class="small">Couture Patisserie · Made in Miami</span>
-      <h1>
+      <span class="small" data-i18n="hero.eyebrow">Couture Patisserie · Made in Miami</span>
+      <h1 data-i18n-html="hero.title">
         Sweetness,
         <span class="it huge">composed.</span>
       </h1>
-      <p class="lede">
+      <p class="lede" data-i18n="hero.lede">
         A Miami atelier of bespoke cakes, cupcakes, cake pops, cookies, brownies, flan and tres leches — handmade with the finest ingredients for weddings, birthdays, and the occasions that ask for something extraordinary.
       </p>
       <div class="ctas">
-        <a class="btn btn-dark" href="#inquire">Inquire about a custom order <span class="arr">→</span></a>
-        <a class="btn btn-ghost" href="#menu">Explore the menu</a>
+        <a class="btn btn-dark" href="#inquire" data-i18n-html="hero.ctaPrimary">Inquire about a custom order <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="#menu" data-i18n="hero.ctaSecondary">Explore the menu</a>
       </div>
       <div class="marks">
-        <div><div class="num">est. 2018</div><div class="lab">Miami, FL</div></div>
-        <div><div class="num">200+</div><div class="lab">Events composed</div></div>
-        <div><div class="num">★★★★★</div><div class="lab">Private clientele</div></div>
+        <div><div class="num" data-i18n="hero.mark1Num">est. 2018</div><div class="lab" data-i18n="hero.mark1Lab">Miami, FL</div></div>
+        <div><div class="num">200+</div><div class="lab" data-i18n="hero.mark2Lab">Events composed</div></div>
+        <div><div class="num">★★★★★</div><div class="lab" data-i18n="hero.mark3Lab">Private clientele</div></div>
       </div>
     </div>
     <div class="hero-art">
@@ -358,63 +369,63 @@
 
 <!-- STRIP -->
 <div class="strip">
-  <span>Cakes</span>
-  <span>Cupcakes</span>
-  <span>Cake Pops</span>
-  <span>Cookies</span>
-  <span>Brownies</span>
-  <span>Flan</span>
-  <span>Tres Leches</span>
+  <span data-i18n="strip.cakes">Cakes</span>
+  <span data-i18n="strip.cupcakes">Cupcakes</span>
+  <span data-i18n="strip.pops">Cake Pops</span>
+  <span data-i18n="strip.cookies">Cookies</span>
+  <span data-i18n="strip.brownies">Brownies</span>
+  <span data-i18n="strip.flan">Flan</span>
+  <span data-i18n="strip.tres">Tres Leches</span>
 </div>
 
 <!-- SIGNATURES -->
 <section class="section" id="signatures">
   <div class="sec-head">
-    <span class="small">— The Atelier —</span>
-    <h2>Signature <span class="it">creations.</span></h2>
+    <span class="small" data-i18n="sig.eyebrow">— The Atelier —</span>
+    <h2 data-i18n-html="sig.title">Signature <span class="it">creations.</span></h2>
     <div class="ornament"><span class="glyph">✦</span></div>
-    <p class="blurb">A handful of recent commissions. Every piece is composed in private collaboration — flavour, palette, silhouette and finish to suit one occasion only.</p>
+    <p class="blurb" data-i18n="sig.blurb">A handful of recent commissions. Every piece is composed in private collaboration — flavour, palette, silhouette and finish to suit one occasion only.</p>
   </div>
   <div class="sig-grid">
     <div class="card featured">
       <div class="img-wrap"><img src="https://images.unsplash.com/photo-1623428454614-abaf00244e52?auto=format&fit=crop&w=900&q=80" alt="Tall couture wedding cake" loading="lazy" /></div>
-      <span class="badge">House Favorite</span>
+      <span class="badge" data-i18n="sig.badge">House Favorite</span>
       <div class="body">
         <span class="small">N°&nbsp;01</span>
-        <h3>The <span class="it">Atelier</span> Tier</h3>
-        <p>Six tiers of vanilla bean and rose, hand-dressed in sugared pearls.</p>
+        <h3 data-i18n-html="sig.c1Title">The <span class="it">Atelier</span> Tier</h3>
+        <p data-i18n="sig.c1Desc">Six tiers of vanilla bean and rose, hand-dressed in sugared pearls.</p>
       </div>
     </div>
     <div class="card">
       <div class="img-wrap"><img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?auto=format&fit=crop&w=700&q=80" alt="Champagne cupcakes with gold leaf" loading="lazy" /></div>
       <div class="body">
         <span class="small">N°&nbsp;02</span>
-        <h3>Champagne <span class="it">Cupcakes</span></h3>
-        <p>Brut buttercream, gold leaf, edible blossoms.</p>
+        <h3 data-i18n-html="sig.c2Title">Champagne <span class="it">Cupcakes</span></h3>
+        <p data-i18n="sig.c2Desc">Brut buttercream, gold leaf, edible blossoms.</p>
       </div>
     </div>
     <div class="card">
       <div class="img-wrap"><img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=700&q=80" alt="Royal-iced sugar cookies" loading="lazy" /></div>
       <div class="body">
         <span class="small">N°&nbsp;03</span>
-        <h3>Sugared <span class="it">Cookies</span></h3>
-        <p>Royal-iced, monogrammed for the occasion.</p>
+        <h3 data-i18n-html="sig.c3Title">Sugared <span class="it">Cookies</span></h3>
+        <p data-i18n="sig.c3Desc">Royal-iced, monogrammed for the occasion.</p>
       </div>
     </div>
     <div class="card">
       <div class="img-wrap"><img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=700&q=80" alt="Hand-dipped cake pops" loading="lazy" /></div>
       <div class="body">
         <span class="small">N°&nbsp;04</span>
-        <h3>Petits <span class="it">Pops</span></h3>
-        <p>Hand-dipped, ribboned, faceted like jewels.</p>
+        <h3 data-i18n-html="sig.c4Title">Petits <span class="it">Pops</span></h3>
+        <p data-i18n="sig.c4Desc">Hand-dipped, ribboned, faceted like jewels.</p>
       </div>
     </div>
     <div class="card">
       <div class="img-wrap"><img src="https://images.unsplash.com/photo-1567171466295-4afa63d45416?auto=format&fit=crop&w=700&q=80" alt="Tres leches with cinnamon cream and berries" loading="lazy" /></div>
       <div class="body">
         <span class="small">N°&nbsp;05</span>
-        <h3>Tres <span class="it">Leches</span></h3>
-        <p>Three-milk soak, cinnamon cream, fresh berries.</p>
+        <h3 data-i18n-html="sig.c5Title">Tres <span class="it">Leches</span></h3>
+        <p data-i18n="sig.c5Desc">Three-milk soak, cinnamon cream, fresh berries.</p>
       </div>
     </div>
   </div>
@@ -423,25 +434,25 @@
 <!-- MENU -->
 <section class="menu-section" id="menu">
   <div class="sec-head">
-    <span class="small">— La Carte —</span>
-    <h2>The <span class="it">menu.</span></h2>
+    <span class="small" data-i18n="menu.eyebrow">— La Carte —</span>
+    <h2 data-i18n-html="menu.title">The <span class="it">menu.</span></h2>
     <div class="ornament"><span class="glyph">✦</span></div>
-    <p class="blurb">A starting point — every flavor, finish and form is custom. Speak with us to begin shaping yours.</p>
+    <p class="blurb" data-i18n="menu.blurb">A starting point — every flavor, finish and form is custom. Speak with us to begin shaping yours.</p>
   </div>
   <div class="menu-card">
     <div style="text-align:center">
-      <span class="small gold">— Petits & Grands —</span>
-      <h3 style="font-family:var(--display);font-size:36px;font-weight:500;margin-top:8px">Made-to-order, by appointment.</h3>
+      <span class="small gold" data-i18n="menu.subEyebrow">— Petits & Grands —</span>
+      <h3 style="font-family:var(--display);font-size:36px;font-weight:500;margin-top:8px" data-i18n="menu.subTitle">Made-to-order, by appointment.</h3>
     </div>
     <div class="menu-list">
-      <div class="m-item"><div><h4>Celebration <span class="it">Cakes</span></h4><p>Tiered, sculpted, hand-finished — intimate to architectural.</p></div><span class="price">from $325</span></div>
-      <div class="m-item"><div><h4>Cupcakes</h4><p>By the dozen, in flavours composed for the occasion.</p></div><span class="price">$72 / doz</span></div>
-      <div class="m-item"><div><h4>Cake <span class="it">Pops</span></h4><p>Hand-dipped, stamped, ribboned — couture petits fours.</p></div><span class="price">$54 / doz</span></div>
-      <div class="m-item"><div><h4>Cookies</h4><p>Royal-iced sugar cookies — custom motif and palette.</p></div><span class="price">$66 / doz</span></div>
-      <div class="m-item"><div><h4>Brownies</h4><p>Dark chocolate, sea salt, optional gold leaf.</p></div><span class="price">$48 / doz</span></div>
-      <div class="m-item"><div><h4>Flan</h4><p>Slow-baked — coconut, classic, espresso.</p></div><span class="price">from $9 pp</span></div>
-      <div class="m-item"><div><h4>Tres <span class="it">Leches</span></h4><p>Three-milk soak, cinnamon cream, fresh berries.</p></div><span class="price">from $11 pp</span></div>
-      <div class="m-item"><div><h4>Dessert <span class="it">Tables</span></h4><p>Full styled installations for weddings & galas.</p></div><span class="price">by quote</span></div>
+      <div class="m-item"><div><h4 data-i18n-html="menu.i1Title">Celebration <span class="it">Cakes</span></h4><p data-i18n="menu.i1Desc">Tiered, sculpted, hand-finished — intimate to architectural.</p></div><span class="price" data-i18n="menu.i1Price">from $325</span></div>
+      <div class="m-item"><div><h4 data-i18n-html="menu.i2Title">Cupcakes</h4><p data-i18n="menu.i2Desc">By the dozen, in flavours composed for the occasion.</p></div><span class="price" data-i18n="menu.i2Price">$72 / doz</span></div>
+      <div class="m-item"><div><h4 data-i18n-html="menu.i3Title">Cake <span class="it">Pops</span></h4><p data-i18n="menu.i3Desc">Hand-dipped, stamped, ribboned — couture petits fours.</p></div><span class="price" data-i18n="menu.i3Price">$54 / doz</span></div>
+      <div class="m-item"><div><h4 data-i18n-html="menu.i4Title">Cookies</h4><p data-i18n="menu.i4Desc">Royal-iced sugar cookies — custom motif and palette.</p></div><span class="price" data-i18n="menu.i4Price">$66 / doz</span></div>
+      <div class="m-item"><div><h4 data-i18n-html="menu.i5Title">Brownies</h4><p data-i18n="menu.i5Desc">Dark chocolate, sea salt, optional gold leaf.</p></div><span class="price" data-i18n="menu.i5Price">$48 / doz</span></div>
+      <div class="m-item"><div><h4 data-i18n-html="menu.i6Title">Flan</h4><p data-i18n="menu.i6Desc">Slow-baked — coconut, classic, espresso.</p></div><span class="price" data-i18n="menu.i6Price">from $9 pp</span></div>
+      <div class="m-item"><div><h4 data-i18n-html="menu.i7Title">Tres <span class="it">Leches</span></h4><p data-i18n="menu.i7Desc">Three-milk soak, cinnamon cream, fresh berries.</p></div><span class="price" data-i18n="menu.i7Price">from $11 pp</span></div>
+      <div class="m-item"><div><h4 data-i18n-html="menu.i8Title">Dessert <span class="it">Tables</span></h4><p data-i18n="menu.i8Desc">Full styled installations for weddings & galas.</p></div><span class="price" data-i18n="menu.i8Price">by quote</span></div>
     </div>
   </div>
 </section>
@@ -449,10 +460,10 @@
 <!-- INSTAGRAM -->
 <section class="ig-section" id="ig">
   <div class="sec-head">
-    <span class="small">— Le Journal —</span>
-    <h2>From the <span class="it">feed.</span></h2>
+    <span class="small" data-i18n="ig.eyebrow">— Le Journal —</span>
+    <h2 data-i18n-html="ig.title">From the <span class="it">feed.</span></h2>
     <div class="ornament"><span class="glyph">@xosweetsmiami</span></div>
-    <p class="blurb">A daily diary of cakes leaving the studio. Follow along on Instagram.</p>
+    <p class="blurb" data-i18n="ig.blurb">A daily diary of cakes leaving the studio. Follow along on Instagram.</p>
   </div>
   <div class="ig-grid">
     <a class="ig-tile" href="https://www.instagram.com/xosweetsmiami/" target="_blank" rel="noopener"><img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=600&q=80" alt="Couture cake detail" loading="lazy" /><div class="meta"><span>♥ 2.4k</span><span>03 May</span></div></a>
@@ -465,7 +476,7 @@
     <a class="ig-tile" href="https://www.instagram.com/xosweetsmiami/" target="_blank" rel="noopener"><img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=600&q=80" alt="Wedding cake floral" loading="lazy" /><div class="meta"><span>♥ 2.7k</span><span>12 Apr</span></div></a>
   </div>
   <div class="ig-cta">
-    <a class="btn btn-dark" href="https://www.instagram.com/xosweetsmiami/" target="_blank" rel="noopener">Follow @xosweetsmiami <span class="arr">→</span></a>
+    <a class="btn btn-dark" href="https://www.instagram.com/xosweetsmiami/" target="_blank" rel="noopener" data-i18n-html="ig.cta">Follow @xosweetsmiami <span class="arr">→</span></a>
   </div>
 </section>
 
@@ -473,34 +484,34 @@
 <section class="inquiry-section" id="inquire">
   <div class="inquiry-grid">
     <div class="inq-words">
-      <span class="small">— Réservez —</span>
-      <h2>Begin a <span class="it">commission.</span></h2>
-      <p>From the first sketch to the final tier, every XO Sweets order is a private commission. Tell us a little about your event and we'll respond within 24 hours to begin shaping your vision.</p>
+      <span class="small" data-i18n="inq.eyebrow">— Réservez —</span>
+      <h2 data-i18n-html="inq.title">Begin a <span class="it">commission.</span></h2>
+      <p data-i18n="inq.body">From the first sketch to the final tier, every XO Sweets order is a private commission. Tell us a little about your event and we'll respond within 24 hours to begin shaping your vision.</p>
       <div class="inq-quotebox">
-        <blockquote>"It tasted as beautiful as it looked — and it looked unforgettable."</blockquote>
-        <cite>Wedding · Coral Gables · 2025</cite>
+        <blockquote data-i18n="inq.quote">"It tasted as beautiful as it looked — and it looked unforgettable."</blockquote>
+        <cite data-i18n="inq.quoteCite">Wedding · Coral Gables · 2025</cite>
       </div>
     </div>
     <div class="inq-form">
-      <span class="small">— Inquiry —</span>
-      <h3>Tell us about your <span class="it">occasion.</span></h3>
+      <span class="small" data-i18n="inq.formEyebrow">— Inquiry —</span>
+      <h3 data-i18n-html="inq.formTitle">Tell us about your <span class="it">occasion.</span></h3>
       <form id="inquiryForm" action="mailto:xosweetsmiami@gmail.com" method="post" enctype="text/plain">
         <div class="row">
-          <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" placeholder="Sofía Martínez" required /></div>
-          <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" placeholder="(786) 555 1234" /></div>
+          <div class="field"><label for="f-name" data-i18n="form.name">Name</label><input id="f-name" name="name" type="text" placeholder="Sofía Martínez" data-i18n-ph="form.namePh" required /></div>
+          <div class="field"><label for="f-phone" data-i18n="form.phone">Phone</label><input id="f-phone" name="phone" type="tel" placeholder="(786) 555 1234" /></div>
         </div>
-        <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" placeholder="you@example.com" required /></div>
+        <div class="field"><label for="f-email" data-i18n="form.email">Email</label><input id="f-email" name="email" type="email" placeholder="you@example.com" required /></div>
         <div class="row">
-          <div class="field"><label for="f-date">Event date</label><input id="f-date" name="date" type="date" /></div>
-          <div class="field"><label for="f-type">Type of event</label>
+          <div class="field"><label for="f-date" data-i18n="form.date">Event date</label><input id="f-date" name="date" type="date" /></div>
+          <div class="field"><label for="f-type" data-i18n="form.type">Type of event</label>
             <select id="f-type" name="type">
-              <option>Wedding</option><option>Birthday</option><option>Anniversary</option>
-              <option>Quinceañera</option><option>Baby Shower</option><option>Corporate</option><option>Other</option>
+              <option data-i18n="form.typeWedding">Wedding</option><option data-i18n="form.typeBirthday">Birthday</option><option data-i18n="form.typeAnniversary">Anniversary</option>
+              <option data-i18n="form.typeQuince">Quinceañera</option><option data-i18n="form.typeBaby">Baby Shower</option><option data-i18n="form.typeCorporate">Corporate</option><option data-i18n="form.typeOther">Other</option>
             </select>
           </div>
         </div>
-        <div class="field"><label for="f-vision">Tell us your vision</label><textarea id="f-vision" name="vision" placeholder="Six-tier ivory and blush, garden ceremony, 120 guests, dessert table including flan and cookies…"></textarea></div>
-        <button type="submit" class="submit">Submit inquiry <span class="arr">→</span></button>
+        <div class="field"><label for="f-vision" data-i18n="form.vision">Tell us your vision</label><textarea id="f-vision" name="vision" placeholder="Six-tier ivory and blush, garden ceremony, 120 guests, dessert table including flan and cookies…" data-i18n-ph="form.visionPh"></textarea></div>
+        <button type="submit" class="submit" data-i18n-html="form.submit">Submit inquiry <span class="arr">→</span></button>
       </form>
     </div>
   </div>
@@ -510,36 +521,305 @@
 <footer>
   <div class="ornament"><span class="glyph">✦ &nbsp; xo &nbsp; ✦</span></div>
   <div class="crest">
-    <div class="est">— Maison —</div>
+    <div class="est" data-i18n="crest.est">— Maison —</div>
     <div class="name">XO&nbsp;SWEETS</div>
-    <div class="sub">Miami · Couture Patisserie · Est. 2018</div>
+    <div class="sub" data-i18n="footer.crestSub">Miami · Couture Patisserie · Est. 2018</div>
   </div>
   <div class="grid">
     <div class="col">
-      <span class="small">Studio</span>
+      <span class="small" data-i18n="footer.studio">Studio</span>
       <p>Miami, FL</p>
-      <p>Servicing Miami-Dade<br/>& Broward Counties</p>
+      <p data-i18n-html="footer.area">Servicing Miami-Dade<br/>& Broward Counties</p>
     </div>
     <div class="col">
-      <span class="small">Reach Us</span>
+      <span class="small" data-i18n="footer.reach">Reach Us</span>
       <a href="tel:7863547439">786 354 7439</a>
       <a href="mailto:xosweetsmiami@gmail.com">xosweetsmiami@gmail.com</a>
     </div>
     <div class="col">
-      <span class="small">Follow</span>
+      <span class="small" data-i18n="footer.follow">Follow</span>
       <a href="https://www.instagram.com/xosweetsmiami/" target="_blank" rel="noopener">@xosweetsmiami</a>
-      <a href="https://www.instagram.com/xosweetsmiami/" target="_blank" rel="noopener">Instagram →</a>
+      <a href="https://www.instagram.com/xosweetsmiami/" target="_blank" rel="noopener" data-i18n="footer.ig">Instagram →</a>
     </div>
     <div class="col">
-      <span class="small">Inquiries</span>
-      <a href="#inquire">Custom orders →</a>
-      <a href="#inquire">Tastings →</a>
+      <span class="small" data-i18n="footer.inquiries">Inquiries</span>
+      <a href="#inquire" data-i18n="footer.custom">Custom orders →</a>
+      <a href="#inquire" data-i18n="footer.tastings">Tastings →</a>
     </div>
   </div>
-  <div class="bot">© 2026 XO Sweets Miami · Composed by hand in Florida</div>
+  <div class="bot" data-i18n="footer.bot">© 2026 XO Sweets Miami · Composed by hand in Florida</div>
 </footer>
 
 <script>
+  // ─── Translations (EN / ES) ───
+  var I18N = {
+    en: {
+      'nav.menu': '☰ Menu',
+      'nav.atelier': 'Atelier',
+      'nav.carte': 'La Carte',
+      'nav.journal': 'Le Journal',
+      'nav.reserve': 'Réservez',
+      'nav.inquire': 'Inquire',
+      'crest.est': '— Maison —',
+      'crest.sub': 'Miami · Couture Patisserie',
+
+      'hero.eyebrow': 'Couture Patisserie · Made in Miami',
+      'hero.title': 'Sweetness, <span class="it huge">composed.</span>',
+      'hero.lede': 'A Miami atelier of bespoke cakes, cupcakes, cake pops, cookies, brownies, flan and tres leches — handmade with the finest ingredients for weddings, birthdays, and the occasions that ask for something extraordinary.',
+      'hero.ctaPrimary': 'Inquire about a custom order <span class="arr">→</span>',
+      'hero.ctaSecondary': 'Explore the menu',
+      'hero.mark1Num': 'est. 2018',
+      'hero.mark1Lab': 'Miami, FL',
+      'hero.mark2Lab': 'Events composed',
+      'hero.mark3Lab': 'Private clientele',
+
+      'strip.cakes': 'Cakes',
+      'strip.cupcakes': 'Cupcakes',
+      'strip.pops': 'Cake Pops',
+      'strip.cookies': 'Cookies',
+      'strip.brownies': 'Brownies',
+      'strip.flan': 'Flan',
+      'strip.tres': 'Tres Leches',
+
+      'sig.eyebrow': '— The Atelier —',
+      'sig.title': 'Signature <span class="it">creations.</span>',
+      'sig.blurb': 'A handful of recent commissions. Every piece is composed in private collaboration — flavour, palette, silhouette and finish to suit one occasion only.',
+      'sig.badge': 'House Favorite',
+      'sig.c1Title': 'The <span class="it">Atelier</span> Tier',
+      'sig.c1Desc': 'Six tiers of vanilla bean and rose, hand-dressed in sugared pearls.',
+      'sig.c2Title': 'Champagne <span class="it">Cupcakes</span>',
+      'sig.c2Desc': 'Brut buttercream, gold leaf, edible blossoms.',
+      'sig.c3Title': 'Sugared <span class="it">Cookies</span>',
+      'sig.c3Desc': 'Royal-iced, monogrammed for the occasion.',
+      'sig.c4Title': 'Petits <span class="it">Pops</span>',
+      'sig.c4Desc': 'Hand-dipped, ribboned, faceted like jewels.',
+      'sig.c5Title': 'Tres <span class="it">Leches</span>',
+      'sig.c5Desc': 'Three-milk soak, cinnamon cream, fresh berries.',
+
+      'menu.eyebrow': '— La Carte —',
+      'menu.title': 'The <span class="it">menu.</span>',
+      'menu.blurb': 'A starting point — every flavor, finish and form is custom. Speak with us to begin shaping yours.',
+      'menu.subEyebrow': '— Petits & Grands —',
+      'menu.subTitle': 'Made-to-order, by appointment.',
+      'menu.i1Title': 'Celebration <span class="it">Cakes</span>',
+      'menu.i1Desc': 'Tiered, sculpted, hand-finished — intimate to architectural.',
+      'menu.i1Price': 'from $325',
+      'menu.i2Title': 'Cupcakes',
+      'menu.i2Desc': 'By the dozen, in flavours composed for the occasion.',
+      'menu.i2Price': '$72 / doz',
+      'menu.i3Title': 'Cake <span class="it">Pops</span>',
+      'menu.i3Desc': 'Hand-dipped, stamped, ribboned — couture petits fours.',
+      'menu.i3Price': '$54 / doz',
+      'menu.i4Title': 'Cookies',
+      'menu.i4Desc': 'Royal-iced sugar cookies — custom motif and palette.',
+      'menu.i4Price': '$66 / doz',
+      'menu.i5Title': 'Brownies',
+      'menu.i5Desc': 'Dark chocolate, sea salt, optional gold leaf.',
+      'menu.i5Price': '$48 / doz',
+      'menu.i6Title': 'Flan',
+      'menu.i6Desc': 'Slow-baked — coconut, classic, espresso.',
+      'menu.i6Price': 'from $9 pp',
+      'menu.i7Title': 'Tres <span class="it">Leches</span>',
+      'menu.i7Desc': 'Three-milk soak, cinnamon cream, fresh berries.',
+      'menu.i7Price': 'from $11 pp',
+      'menu.i8Title': 'Dessert <span class="it">Tables</span>',
+      'menu.i8Desc': 'Full styled installations for weddings & galas.',
+      'menu.i8Price': 'by quote',
+
+      'ig.eyebrow': '— Le Journal —',
+      'ig.title': 'From the <span class="it">feed.</span>',
+      'ig.blurb': 'A daily diary of cakes leaving the studio. Follow along on Instagram.',
+      'ig.cta': 'Follow @xosweetsmiami <span class="arr">→</span>',
+
+      'inq.eyebrow': '— Réservez —',
+      'inq.title': 'Begin a <span class="it">commission.</span>',
+      'inq.body': 'From the first sketch to the final tier, every XO Sweets order is a private commission. Tell us a little about your event and we\'ll respond within 24 hours to begin shaping your vision.',
+      'inq.quote': '"It tasted as beautiful as it looked — and it looked unforgettable."',
+      'inq.quoteCite': 'Wedding · Coral Gables · 2025',
+      'inq.formEyebrow': '— Inquiry —',
+      'inq.formTitle': 'Tell us about your <span class="it">occasion.</span>',
+
+      'form.name': 'Name',
+      'form.namePh': 'Sofía Martínez',
+      'form.phone': 'Phone',
+      'form.email': 'Email',
+      'form.date': 'Event date',
+      'form.type': 'Type of event',
+      'form.typeWedding': 'Wedding',
+      'form.typeBirthday': 'Birthday',
+      'form.typeAnniversary': 'Anniversary',
+      'form.typeQuince': 'Quinceañera',
+      'form.typeBaby': 'Baby Shower',
+      'form.typeCorporate': 'Corporate',
+      'form.typeOther': 'Other',
+      'form.vision': 'Tell us your vision',
+      'form.visionPh': 'Six-tier ivory and blush, garden ceremony, 120 guests, dessert table including flan and cookies…',
+      'form.submit': 'Submit inquiry <span class="arr">→</span>',
+      'form.sent': 'Sent — we will be in touch ✓',
+
+      'footer.studio': 'Studio',
+      'footer.area': 'Servicing Miami-Dade<br/>& Broward Counties',
+      'footer.reach': 'Reach Us',
+      'footer.follow': 'Follow',
+      'footer.ig': 'Instagram →',
+      'footer.inquiries': 'Inquiries',
+      'footer.custom': 'Custom orders →',
+      'footer.tastings': 'Tastings →',
+      'footer.crestSub': 'Miami · Couture Patisserie · Est. 2018',
+      'footer.bot': '© 2026 XO Sweets Miami · Composed by hand in Florida'
+    },
+    es: {
+      'nav.menu': '☰ Menú',
+      'nav.atelier': 'Atelier',
+      'nav.carte': 'La Carta',
+      'nav.journal': 'El Diario',
+      'nav.reserve': 'Reserve',
+      'nav.inquire': 'Consultar',
+      'crest.est': '— Maison —',
+      'crest.sub': 'Miami · Pastelería de Alta Costura',
+
+      'hero.eyebrow': 'Pastelería de Alta Costura · Hecho en Miami',
+      'hero.title': 'Dulzura, <span class="it huge">compuesta.</span>',
+      'hero.lede': 'Un atelier en Miami de pasteles, cupcakes, cake pops, galletas, brownies, flan y tres leches a medida — elaborados a mano con los mejores ingredientes para bodas, cumpleaños y ocasiones que piden algo extraordinario.',
+      'hero.ctaPrimary': 'Consultar sobre un pedido a medida <span class="arr">→</span>',
+      'hero.ctaSecondary': 'Explorar el menú',
+      'hero.mark1Num': 'desde 2018',
+      'hero.mark1Lab': 'Miami, FL',
+      'hero.mark2Lab': 'Eventos creados',
+      'hero.mark3Lab': 'Clientela privada',
+
+      'strip.cakes': 'Pasteles',
+      'strip.cupcakes': 'Cupcakes',
+      'strip.pops': 'Cake Pops',
+      'strip.cookies': 'Galletas',
+      'strip.brownies': 'Brownies',
+      'strip.flan': 'Flan',
+      'strip.tres': 'Tres Leches',
+
+      'sig.eyebrow': '— El Atelier —',
+      'sig.title': 'Creaciones <span class="it">de autor.</span>',
+      'sig.blurb': 'Una selección de encargos recientes. Cada pieza se compone en colaboración privada — sabor, paleta, silueta y acabado para una sola ocasión.',
+      'sig.badge': 'Favorito de la Casa',
+      'sig.c1Title': 'El Tier <span class="it">Atelier</span>',
+      'sig.c1Desc': 'Seis pisos de vainilla bourbon y rosa, decorado a mano con perlas de azúcar.',
+      'sig.c2Title': 'Cupcakes de <span class="it">Champán</span>',
+      'sig.c2Desc': 'Buttercream brut, hojas de oro, flores comestibles.',
+      'sig.c3Title': 'Galletas <span class="it">Glaseadas</span>',
+      'sig.c3Desc': 'Glaseado real, con monograma para la ocasión.',
+      'sig.c4Title': 'Petits <span class="it">Pops</span>',
+      'sig.c4Desc': 'Bañados a mano, con cintas, facetados como joyas.',
+      'sig.c5Title': 'Tres <span class="it">Leches</span>',
+      'sig.c5Desc': 'Remojo de tres leches, crema de canela, frutos rojos frescos.',
+
+      'menu.eyebrow': '— La Carta —',
+      'menu.title': 'El <span class="it">menú.</span>',
+      'menu.blurb': 'Un punto de partida — cada sabor, acabado y forma es a medida. Hablemos para empezar a dar forma al suyo.',
+      'menu.subEyebrow': '— Petits & Grands —',
+      'menu.subTitle': 'Hecho a pedido, con cita previa.',
+      'menu.i1Title': 'Pasteles de <span class="it">Celebración</span>',
+      'menu.i1Desc': 'Por pisos, esculpidos, terminados a mano — desde lo íntimo hasta lo arquitectónico.',
+      'menu.i1Price': 'desde $325',
+      'menu.i2Title': 'Cupcakes',
+      'menu.i2Desc': 'Por docena, en sabores compuestos para la ocasión.',
+      'menu.i2Price': '$72 / doc',
+      'menu.i3Title': 'Cake <span class="it">Pops</span>',
+      'menu.i3Desc': 'Bañados a mano, sellados, con cintas — petits fours de alta costura.',
+      'menu.i3Price': '$54 / doc',
+      'menu.i4Title': 'Galletas',
+      'menu.i4Desc': 'Galletas de azúcar con glaseado real — motivo y paleta a medida.',
+      'menu.i4Price': '$66 / doc',
+      'menu.i5Title': 'Brownies',
+      'menu.i5Desc': 'Chocolate negro, sal marina, opción de hojas de oro.',
+      'menu.i5Price': '$48 / doc',
+      'menu.i6Title': 'Flan',
+      'menu.i6Desc': 'Horneado lento — coco, clásico, espresso.',
+      'menu.i6Price': 'desde $9 p/p',
+      'menu.i7Title': 'Tres <span class="it">Leches</span>',
+      'menu.i7Desc': 'Remojo de tres leches, crema de canela, frutos rojos frescos.',
+      'menu.i7Price': 'desde $11 p/p',
+      'menu.i8Title': 'Mesas de <span class="it">Postres</span>',
+      'menu.i8Desc': 'Instalaciones con estilo completo para bodas y galas.',
+      'menu.i8Price': 'a cotizar',
+
+      'ig.eyebrow': '— El Diario —',
+      'ig.title': 'Desde el <span class="it">feed.</span>',
+      'ig.blurb': 'Un diario de los pasteles que salen del estudio. Síguenos en Instagram.',
+      'ig.cta': 'Seguir a @xosweetsmiami <span class="arr">→</span>',
+
+      'inq.eyebrow': '— Reserve —',
+      'inq.title': 'Comience un <span class="it">encargo.</span>',
+      'inq.body': 'Desde el primer boceto hasta el piso final, cada pedido de XO Sweets es un encargo privado. Cuéntenos un poco sobre su evento y le responderemos en menos de 24 horas para empezar a dar forma a su visión.',
+      'inq.quote': '"Sabía tan hermoso como se veía — y se veía inolvidable."',
+      'inq.quoteCite': 'Boda · Coral Gables · 2025',
+      'inq.formEyebrow': '— Consulta —',
+      'inq.formTitle': 'Cuéntenos sobre su <span class="it">ocasión.</span>',
+
+      'form.name': 'Nombre',
+      'form.namePh': 'Sofía Martínez',
+      'form.phone': 'Teléfono',
+      'form.email': 'Correo electrónico',
+      'form.date': 'Fecha del evento',
+      'form.type': 'Tipo de evento',
+      'form.typeWedding': 'Boda',
+      'form.typeBirthday': 'Cumpleaños',
+      'form.typeAnniversary': 'Aniversario',
+      'form.typeQuince': 'Quinceañera',
+      'form.typeBaby': 'Baby Shower',
+      'form.typeCorporate': 'Corporativo',
+      'form.typeOther': 'Otro',
+      'form.vision': 'Cuéntenos su visión',
+      'form.visionPh': 'Seis pisos en marfil y blush, ceremonia en jardín, 120 invitados, mesa de postres con flan y galletas…',
+      'form.submit': 'Enviar consulta <span class="arr">→</span>',
+      'form.sent': 'Enviado — estaremos en contacto ✓',
+
+      'footer.studio': 'Estudio',
+      'footer.area': 'Servicio en Miami-Dade<br/>y Broward',
+      'footer.reach': 'Contacto',
+      'footer.follow': 'Síganos',
+      'footer.ig': 'Instagram →',
+      'footer.inquiries': 'Consultas',
+      'footer.custom': 'Pedidos a medida →',
+      'footer.tastings': 'Degustaciones →',
+      'footer.crestSub': 'Miami · Pastelería de Alta Costura · Desde 2018',
+      'footer.bot': '© 2026 XO Sweets Miami · Hecho a mano en Florida'
+    }
+  };
+
+  function applyLang(lang){
+    if (!I18N[lang]) lang = 'en';
+    var dict = I18N[lang];
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var k = el.getAttribute('data-i18n');
+      if (dict[k] != null) el.textContent = dict[k];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el){
+      var k = el.getAttribute('data-i18n-html');
+      if (dict[k] != null) el.innerHTML = dict[k];
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(function(el){
+      var k = el.getAttribute('data-i18n-ph');
+      if (dict[k] != null) el.setAttribute('placeholder', dict[k]);
+    });
+    document.querySelectorAll('.lang button').forEach(function(b){
+      var on = b.getAttribute('data-lang') === lang;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    try { localStorage.setItem('xo.lang', lang); } catch(e) {}
+    window.__xoLang = lang;
+  }
+
+  (function(){
+    var saved = 'en';
+    try { saved = localStorage.getItem('xo.lang') || 'en'; } catch(e) {}
+    if (!I18N[saved]) saved = 'en';
+    applyLang(saved);
+    document.querySelectorAll('.lang button').forEach(function(b){
+      b.addEventListener('click', function(){ applyLang(b.getAttribute('data-lang')); });
+    });
+  })();
+
   // Mobile menu toggle
   (function(){
     var t = document.getElementById('menuToggle');
@@ -559,7 +839,9 @@
     f.addEventListener('submit', function(){
       setTimeout(function(){
         var b = f.querySelector('.submit');
-        if (b) b.innerHTML = 'Sent — we will be in touch ✓';
+        if (!b) return;
+        var lang = window.__xoLang || 'en';
+        b.textContent = (I18N[lang] && I18N[lang]['form.sent']) || 'Sent — we will be in touch ✓';
       }, 100);
     });
   })();
