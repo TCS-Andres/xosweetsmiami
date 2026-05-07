@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Design source bundle (not part of the published site)
+design/
+design.tar
+design.tar.gz
