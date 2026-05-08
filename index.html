@@ -63,18 +63,22 @@
   /* ─── nav ─── */
   nav{
     display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
-    padding:32px var(--pad) 24px;background:var(--paper);
-    position:sticky;top:0;z-index:50;
+    column-gap:32px;
+    padding:24px var(--pad);background:var(--paper);
+    position:sticky;top:0;z-index:50;min-width:0;
   }
-  nav .links{display:flex;gap:38px}
-  nav .links a{font-family:var(--sans);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-soft);transition:color .2s}
+  nav > *{min-width:0}
+  nav .links{display:flex;gap:32px;justify-self:start}
+  nav .links a{font-family:var(--sans);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-soft);transition:color .2s;white-space:nowrap}
   nav .links a:hover{color:var(--gold)}
-  nav .crest{display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--ink)}
-  nav .crest .est{font-family:var(--italic);font-style:italic;font-size:13px;color:var(--gold);letter-spacing:.06em}
-  nav .crest .name{font-family:var(--display);font-size:30px;letter-spacing:.32em;padding-left:.32em;color:var(--ink);font-weight:500}
-  nav .crest .sub{font-family:var(--italic);font-style:italic;font-size:12px;color:var(--cocoa);letter-spacing:.18em}
-  nav .right{display:flex;justify-content:flex-end;gap:24px;align-items:center}
-  nav .menu-toggle{display:none;background:none;border:0;color:var(--ink);cursor:pointer;padding:8px;font-family:var(--sans);font-size:11px;letter-spacing:.28em;text-transform:uppercase}
+  nav .crest{display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--ink);justify-self:center}
+  nav .crest .est{font-family:var(--italic);font-style:italic;font-size:13px;color:var(--gold);letter-spacing:.06em;white-space:nowrap}
+  nav .crest .name{font-family:var(--display);font-size:28px;letter-spacing:.30em;padding-left:.30em;color:var(--ink);font-weight:500;white-space:nowrap}
+  nav .crest .sub{font-family:var(--italic);font-style:italic;font-size:12px;color:var(--cocoa);letter-spacing:.18em;white-space:nowrap}
+  nav .right{display:flex;justify-content:flex-end;gap:18px;align-items:center;justify-self:end}
+  nav .right .phone-link{white-space:nowrap}
+  nav .menu-toggle{display:none;background:none;border:0;color:var(--ink);cursor:pointer;padding:8px;font-family:var(--sans);font-size:11px;letter-spacing:.26em;text-transform:uppercase;align-items:center;gap:8px;line-height:1}
+  nav .menu-toggle .menu-icon{font-size:18px;line-height:1}
   /* language toggle */
   .lang{display:inline-flex;align-items:center;gap:0;border:1px solid var(--rule);border-radius:999px;padding:4px;background:var(--paper)}
   .lang button{background:transparent;border:0;cursor:pointer;padding:6px 12px;font-family:var(--sans);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft);border-radius:999px;transition:all .18s}
@@ -268,10 +272,23 @@
     .ig-grid{grid-template-columns:repeat(3,1fr)}
     .inquiry-grid{grid-template-columns:1fr;gap:56px}
     .inq-form{padding:40px 32px}
-    nav .links{gap:24px}
-    nav .crest .name{font-size:24px}
+    nav{column-gap:24px;padding:20px var(--pad)}
+    nav .links{gap:22px}
+    nav .links a{font-size:10px;letter-spacing:.22em}
+    nav .crest .name{font-size:22px;letter-spacing:.24em;padding-left:.24em}
+    nav .crest .est, nav .crest .sub{font-size:11px}
+    nav .right{gap:14px}
+    nav .right .phone-link{font-size:10px;letter-spacing:.22em}
     .section, .menu-section, .ig-section, .inquiry-section{padding:96px var(--pad)}
     .sec-head{margin-bottom:48px}
+  }
+
+  /* Mid range — drop the phone number from the header to free space */
+  @media (max-width: 940px){
+    nav .right .phone-link{display:none}
+    nav .right{gap:12px}
+    nav .links{gap:18px}
+    nav .links a{letter-spacing:.18em}
   }
 
   /* Phone ──────────────────────────────────────────────── */
@@ -280,19 +297,23 @@
     /* iOS safe-area for landscape notches */
     body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
 
-    /* nav */
-    nav{grid-template-columns:auto 1fr auto;padding:16px var(--pad)}
-    nav .links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--paper);flex-direction:column;gap:0;padding:8px var(--pad) 16px;border-top:1px solid var(--rule);box-shadow:0 8px 20px rgba(36,26,22,.06)}
+    /* nav — three-cell, auto | 1fr | auto with consistent column-gap */
+    nav{grid-template-columns:auto 1fr auto;column-gap:14px;padding:14px var(--pad)}
+    nav .links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--paper);flex-direction:column;gap:0;padding:8px var(--pad) 16px;border-top:1px solid var(--rule);box-shadow:0 8px 20px rgba(36,26,22,.06);justify-self:stretch}
     nav .links.open{display:flex}
-    nav .links a{padding:16px 0;border-bottom:1px solid var(--rule);font-size:12px;min-height:44px;display:flex;align-items:center}
+    nav .links a{padding:14px 0;border-bottom:1px solid var(--rule);font-size:12px;letter-spacing:.24em;min-height:44px;display:flex;align-items:center}
     nav .links a:last-child{border-bottom:0}
-    nav .menu-toggle{display:inline-flex;align-items:center;gap:8px;justify-self:start;min-height:44px;min-width:44px}
-    nav .crest .name{font-size:18px;letter-spacing:.22em;padding-left:.22em}
+    nav .menu-toggle{display:inline-flex;justify-content:center;justify-self:start;min-height:44px;min-width:44px;padding:10px;font-size:0;gap:0}
+    nav .menu-toggle .menu-icon{font-size:20px}
+    nav .menu-toggle .menu-text{display:none}
+    nav .crest{padding:0 8px;min-width:0;overflow:hidden}
+    nav .crest .name{font-size:17px;letter-spacing:.20em;padding-left:.20em;text-overflow:ellipsis;overflow:hidden;max-width:100%}
     nav .crest .est, nav .crest .sub{display:none}
     nav .right .phone-link{display:none}
     nav .right{gap:8px}
-    .lang button{padding:6px 10px;font-size:9px;letter-spacing:.18em;min-height:32px}
-    nav .right .btn-ghost{padding:10px 14px !important;font-size:9px !important;min-height:36px}
+    .lang{padding:3px}
+    .lang button{padding:6px 9px;font-size:9px;letter-spacing:.16em;min-height:30px;min-width:30px}
+    nav .right .btn-ghost{padding:10px 14px !important;font-size:9px !important;min-height:38px;letter-spacing:.18em}
 
     /* hero — simplified single-image collage on phones */
     .hero{padding:32px var(--pad) 56px}
@@ -374,12 +395,17 @@
 
   /* Small phone (≤ 380px) ───────────────────────────────── */
   @media (max-width: 380px){
-    :root{--pad:16px}
-    nav .crest .name{font-size:16px;letter-spacing:.18em}
-    nav .right{gap:6px}
-    nav .menu-toggle{font-size:10px;padding:6px}
+    :root{--pad:14px}
+    nav{column-gap:10px;padding:12px var(--pad)}
+    /* Hide Inquire on the smallest phones — Réservez is in the menu */
+    nav .right .btn-ghost{display:none}
+    nav .crest{padding:0 4px}
+    nav .crest .name{font-size:15px;letter-spacing:.18em;padding-left:.18em}
+    nav .right{gap:0}
+    nav .menu-toggle{padding:8px;min-width:40px}
+    nav .menu-toggle .menu-icon{font-size:18px}
+    .lang{padding:3px}
     .lang button{padding:5px 8px;font-size:9px}
-    nav .right .btn-ghost{padding:9px 12px !important}
     .hero-words .marks{flex-wrap:wrap}
     .hero-words .marks div{flex:1 1 100%;min-width:0}
     .hero-words .marks .num{font-size:24px}
@@ -397,7 +423,10 @@
 <body>
 
 <nav>
-  <button class="menu-toggle" aria-label="Toggle menu" id="menuToggle" data-i18n="nav.menu">☰ Menu</button>
+  <button class="menu-toggle" aria-label="Toggle menu" id="menuToggle">
+    <span class="menu-icon" aria-hidden="true">☰</span>
+    <span class="menu-text" data-i18n="nav.menu">Menu</span>
+  </button>
   <div class="links" id="navLinks">
     <a href="#signatures" data-i18n="nav.atelier">Atelier</a>
     <a href="#menu" data-i18n="nav.carte">La Carte</a>
