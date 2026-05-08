@@ -3,7 +3,10 @@
 <head>
 <meta charset="utf-8" />
 <title>XO Sweets Miami — Couture Patisserie · Bespoke Cakes & Sweets</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="format-detection" content="telephone=yes" />
 <meta name="description" content="A Miami atelier of bespoke cakes, cupcakes, cake pops, cookies, brownies, flan and tres leches — handmade with the finest ingredients for weddings, birthdays, and the occasions that ask for something extraordinary." />
 <meta name="theme-color" content="#241a16" />
 <!-- Suppress Chrome / Edge auto-translate banner — we provide our own EN/ES toggle. -->
@@ -40,21 +43,22 @@
     --sans:"Inter",-apple-system,system-ui,sans-serif;
     --pad:72px;
   }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
   html,body{background:var(--paper);color:var(--ink);font-family:var(--serif)}
-  body{font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  img{max-width:100%;display:block}
+  body{font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
+  img{max-width:100%;display:block;height:auto}
   a{color:inherit;text-decoration:none}
   button{font:inherit}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 
   .small{font-family:var(--sans);font-weight:400;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--cocoa)}
   .gold{color:var(--gold)}
 
   /* ─── ornamental rule ─── */
   .ornament{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--gold)}
-  .ornament::before,.ornament::after{content:"";flex:0 0 80px;height:1px;background:linear-gradient(to right,transparent,var(--gold) 30%,var(--gold) 70%,transparent)}
-  .ornament .glyph{font-family:var(--italic);font-style:italic;font-size:22px;letter-spacing:.1em}
+  .ornament::before,.ornament::after{content:"";flex:0 1 80px;min-width:24px;height:1px;background:linear-gradient(to right,transparent,var(--gold) 30%,var(--gold) 70%,transparent)}
+  .ornament .glyph{font-family:var(--italic);font-style:italic;font-size:22px;letter-spacing:.1em;flex-shrink:0;text-align:center}
 
   /* ─── nav ─── */
   nav{
@@ -139,7 +143,7 @@
     display:flex;justify-content:space-between;align-items:center;gap:48px;
     font-family:var(--display);font-style:italic;font-size:24px;flex-wrap:wrap;
   }
-  .strip span{display:inline-flex;align-items:center;gap:14px}
+  .strip span{display:inline-flex;align-items:center;gap:14px;white-space:nowrap}
   .strip span::after{content:"✦";color:var(--gold);font-size:14px;font-style:normal}
   .strip span:last-child::after{display:none}
 
@@ -248,6 +252,7 @@
   footer .bot{margin-top:48px;font-family:var(--sans);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--cocoa);text-align:center}
 
   /* ─── responsive ─── */
+  /* Tablet ─────────────────────────────────────────────── */
   @media (max-width: 1100px){
     :root{--pad:48px}
     .hero-grid{grid-template-columns:1fr;gap:64px}
@@ -265,47 +270,127 @@
     .inq-form{padding:40px 32px}
     nav .links{gap:24px}
     nav .crest .name{font-size:24px}
+    .section, .menu-section, .ig-section, .inquiry-section{padding:96px var(--pad)}
+    .sec-head{margin-bottom:48px}
   }
 
+  /* Phone ──────────────────────────────────────────────── */
   @media (max-width: 768px){
-    :root{--pad:24px}
-    nav{grid-template-columns:auto 1fr auto;padding:20px var(--pad)}
-    nav .links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--paper);flex-direction:column;gap:0;padding:16px var(--pad);border-top:1px solid var(--rule);box-shadow:0 8px 20px rgba(36,26,22,.06)}
+    :root{--pad:20px}
+    /* iOS safe-area for landscape notches */
+    body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+
+    /* nav */
+    nav{grid-template-columns:auto 1fr auto;padding:16px var(--pad)}
+    nav .links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--paper);flex-direction:column;gap:0;padding:8px var(--pad) 16px;border-top:1px solid var(--rule);box-shadow:0 8px 20px rgba(36,26,22,.06)}
     nav .links.open{display:flex}
-    nav .links a{padding:14px 0;border-bottom:1px solid var(--rule);font-size:12px}
+    nav .links a{padding:16px 0;border-bottom:1px solid var(--rule);font-size:12px;min-height:44px;display:flex;align-items:center}
     nav .links a:last-child{border-bottom:0}
-    nav .menu-toggle{display:inline-flex;align-items:center;gap:8px;justify-self:start}
-    nav .crest .name{font-size:20px;letter-spacing:.24em}
+    nav .menu-toggle{display:inline-flex;align-items:center;gap:8px;justify-self:start;min-height:44px;min-width:44px}
+    nav .crest .name{font-size:18px;letter-spacing:.22em;padding-left:.22em}
     nav .crest .est, nav .crest .sub{display:none}
     nav .right .phone-link{display:none}
     nav .right{gap:8px}
-    .lang button{padding:5px 8px;font-size:9px;letter-spacing:.18em}
-    nav .right .btn-ghost{padding:10px 14px !important;font-size:9px !important}
-    .hero{padding:32px var(--pad) 64px}
-    .hero-words .lede{font-size:18px}
-    .hero-words .marks{gap:16px}
-    .hero-art{height:480px}
-    .hero-art .a{width:54%;height:78%;left:0;top:24px}
-    .hero-art .b{width:42%;height:42%;right:0;top:0}
-    .hero-art .c{width:46%;height:46%;right:0;bottom:0}
-    .seal{width:96px !important;height:96px !important}
-    .seal .big{font-size:22px !important}
-    .strip{font-size:18px;gap:24px;justify-content:center;padding:20px var(--pad)}
-    .section{padding:80px var(--pad)}
-    .menu-section{padding:80px var(--pad)}
-    .ig-section{padding:80px var(--pad)}
-    .inquiry-section{padding:80px var(--pad)}
-    .sig-grid{grid-template-columns:1fr;gap:24px}
-    .card .img-wrap, .card.featured .img-wrap{height:320px}
-    .menu-card{padding:36px 24px}
-    .ig-grid{grid-template-columns:repeat(2,1fr);gap:10px}
-    .inq-form{padding:32px 24px}
-    .row{grid-template-columns:1fr}
-    footer{padding:64px var(--pad) 32px}
-    footer .crest .name{font-size:30px;letter-spacing:.24em}
-    footer .grid{grid-template-columns:1fr 1fr;gap:32px}
-    .btn{padding:16px 22px;font-size:10px}
+    .lang button{padding:6px 10px;font-size:9px;letter-spacing:.18em;min-height:32px}
+    nav .right .btn-ghost{padding:10px 14px !important;font-size:9px !important;min-height:36px}
+
+    /* hero — simplified single-image collage on phones */
+    .hero{padding:32px var(--pad) 56px}
+    .hero-words .small{margin-bottom:16px}
+    .hero-words .lede{font-size:17px;margin-top:24px}
+    .hero-words .ctas{margin-top:32px;gap:12px}
+    .hero-words .marks{margin-top:40px;padding-top:20px;gap:14px}
+    .hero-words .marks .num{font-size:26px}
+    .hero-words .marks .lab{font-size:10px;margin-top:4px}
+    .hero-art{height:auto;aspect-ratio:4/5;max-width:480px}
+    .hero-art .a{width:100%;height:100%;left:0;top:0;border-radius:50% 50% 14px 14px;border-width:6px}
+    .hero-art .b{width:42%;aspect-ratio:1;height:auto;right:-8px;top:18%;transform:rotate(4deg);border-width:6px;border-radius:10px}
+    .hero-art .c{width:36%;aspect-ratio:1;height:auto;right:-4px;bottom:8%;transform:rotate(-3deg);border-width:6px}
+    .seal{width:90px !important;height:90px !important;left:18% !important;top:auto !important;bottom:6% !important;transform:rotate(-8deg) !important}
+    .seal .top, .seal .bot{font-size:9px !important;letter-spacing:.24em !important}
+    .seal .big{font-size:20px !important}
+
+    /* strip — horizontal scroll instead of wrap */
+    .strip{font-size:16px;gap:24px;justify-content:flex-start;padding:18px var(--pad);overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .strip::-webkit-scrollbar{display:none}
+    .strip span::after{font-size:12px}
+
+    /* sections */
+    .section, .menu-section, .ig-section, .inquiry-section{padding:72px var(--pad)}
+    .sec-head{margin-bottom:40px}
+    .sec-head h2{letter-spacing:-.005em}
+    .sec-head .blurb{font-size:16px;margin-top:18px}
+
+    /* signatures */
+    .sig-grid{grid-template-columns:1fr;gap:20px}
+    .card .img-wrap, .card.featured .img-wrap{height:300px}
+    .card .body{padding:24px 22px 28px}
+    .card .body h3{font-size:26px}
+    .card .body p{font-size:15px}
+    .card .badge{top:14px;right:14px;font-size:9px;padding:6px 10px}
+
+    /* menu */
+    .menu-card{padding:32px 20px}
+    .menu-card::before, .menu-card::after{width:36px;height:36px;top:8px;left:8px}
+    .menu-card::after{top:auto;left:auto;bottom:8px;right:8px}
+    .menu-card > div[style] h3{font-size:26px !important}
+    .m-item{grid-template-columns:1fr;gap:6px;padding:16px 0;align-items:start}
+    .m-item h4{font-size:21px}
+    .m-item p{font-size:14px}
+    .m-item .price{font-size:18px;justify-self:start}
+
+    /* instagram */
+    .ig-grid{grid-template-columns:repeat(2,1fr);gap:8px;margin-top:40px}
+    .ig-tile .meta{opacity:1;font-size:9px;letter-spacing:.14em;bottom:8px;left:8px;right:8px}
+    .ig-tile::after{opacity:.5}
+
+    /* inquiry */
+    .inq-words p{font-size:17px;margin-top:24px}
+    .inq-quotebox{margin-top:32px;padding:24px 22px}
+    .inq-quotebox blockquote{font-size:18px}
+    .inq-form{padding:28px 22px}
+    .inq-form h3{font-size:28px;margin-bottom:18px}
+    .row{grid-template-columns:1fr;gap:14px}
+    .field input,.field select,.field textarea{font-size:16px;padding:13px 14px}
+    .field label{font-size:11px}
+    .submit{padding:18px;font-size:11px;min-height:48px}
+
+    /* footer */
+    footer{padding:56px var(--pad) 28px}
+    footer .ornament{margin-bottom:36px}
+    footer .crest{margin-bottom:48px}
+    footer .crest .name{font-size:28px;letter-spacing:.22em;padding-left:.22em}
+    footer .crest .sub, footer .crest .est{font-size:12px}
+    footer .grid{grid-template-columns:1fr 1fr;gap:28px;padding-top:36px;text-align:left}
+    footer .col p, footer .col a{font-size:15px;line-height:1.6}
+    footer .col .small{font-size:10px;margin-bottom:10px}
+    footer .bot{margin-top:40px;font-size:9px;letter-spacing:.2em;line-height:1.6}
+
+    /* buttons — keep tap targets ≥ 44px */
+    .btn{padding:16px 22px;font-size:10px;min-height:48px}
     .ctas .btn{flex:1;min-width:160px}
+    .ig-cta{margin-top:36px}
+  }
+
+  /* Small phone (≤ 380px) ───────────────────────────────── */
+  @media (max-width: 380px){
+    :root{--pad:16px}
+    nav .crest .name{font-size:16px;letter-spacing:.18em}
+    nav .right{gap:6px}
+    nav .menu-toggle{font-size:10px;padding:6px}
+    .lang button{padding:5px 8px;font-size:9px}
+    nav .right .btn-ghost{padding:9px 12px !important}
+    .hero-words .marks{flex-wrap:wrap}
+    .hero-words .marks div{flex:1 1 100%;min-width:0}
+    .hero-words .marks .num{font-size:24px}
+    .hero-art{aspect-ratio:5/6}
+    .ctas .btn{min-width:100%}
+    .strip{font-size:15px;gap:20px}
+    .sec-head h2{font-size:36px}
+    .ig-grid{gap:6px}
+    .ig-tile .meta{display:none}
+    .ig-tile::after{opacity:0}
+    .ornament::before, .ornament::after{flex:0 1 40px;min-width:16px}
   }
 </style>
 </head>
